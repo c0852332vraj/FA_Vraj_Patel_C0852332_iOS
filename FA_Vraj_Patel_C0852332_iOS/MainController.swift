@@ -133,7 +133,11 @@ class MainController: UIViewController {
     {
         return button.title(for: .normal) == symbol
     }
-
+    
+    func thatSymbol(_ button: UIButton) -> Bool
+      {
+          return (button.title(for: .normal) != nil)
+      }
     func winAlertMsg(title: String)
     {
         let message = "\nNoughts " + String(noughtsWin) + "\n\nCrosses " + String(crossesWin)
@@ -196,8 +200,94 @@ class MainController: UIViewController {
         }
     }
     
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?)
+        {
+            if motion == .motionShake {
+               undoCheaking()
+
+                if(currentTurn == Turn.Nought)
+                {
+                    currentTurn = Turn.Cross
+                    turnLabel.text = CROSS
+                }
+                else if(currentTurn == Turn.Cross)
+                {
+
+                    currentTurn = Turn.Nought
+                    turnLabel.text = NOUGHT
+                }
+                
+            }
+            
+        }
+    
+    func undoCheaking()
+        {
+
+            for button in board
+            {
+                if button == a1
+                {
+                    button.setTitle(nil, for: .normal)
+                    button.isEnabled = true
+                }
+                if button == a2
+                {
+                    button.setTitle(nil, for: .normal)
+                    button.isEnabled = true
+                }
+                if button == a3
+                {
+                    button.setTitle(nil, for: .normal)
+                    button.isEnabled = true
+                }
+                if button == b1
+                {
+                    button.setTitle(nil, for: .normal)
+                    button.isEnabled = true
+                }
+                if button == b2
+                {
+                    button.setTitle(nil, for: .normal)
+                    button.isEnabled = true
+                }
+                if button == b3
+                {
+                    button.setTitle(nil, for: .normal)
+                    button.isEnabled = true
+                }
+                if button == c1
+                {
+                    button.setTitle(nil, for: .normal)
+                    button.isEnabled = true
+                }
+                if button == c2
+                {
+                    button.setTitle(nil, for: .normal)
+                    button.isEnabled = true
+                }
+                if button == c3
+                {
+                    button.setTitle(nil, for: .normal)
+                    button.isEnabled = true
+                }
+
+            }
+        }
+    
     func boardInitialize()
         {
+            a1.tag = 1
+            a2.tag = 2
+            a3.tag = 3
+            b1.tag = 4
+            b2.tag = 5
+            b3.tag = 6
+            c1.tag = 7
+            c2.tag = 8
+            c3.tag = 9
+            
+            
             board.append(a1)
             board.append(a2)
             board.append(a3)
@@ -208,4 +298,28 @@ class MainController: UIViewController {
             board.append(c2)
             board.append(c3)
         }
+    
+    func toMove(index : Int) -> MoveName {
+        var move = MoveName.a1
+        if index == 1 {
+            move = .a1
+        } else if index == 2 {
+            move = .a2
+        } else if index == 3 {
+            move = .a3
+        } else if index == 4 {
+            move = .b1
+        } else if index == 5 {
+            move = .b2
+        } else if index == 6 {
+            move = .b3
+        } else if index == 7 {
+            move = .c1
+        } else if index == 8 {
+            move = .c2
+        } else if index == 9 {
+            move = .c3
+        }
+        return move
+    }
 }
