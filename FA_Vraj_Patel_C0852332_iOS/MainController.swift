@@ -68,12 +68,14 @@ class MainController: UIViewController {
         {
             crossesWin += 1
             winAlertMsg(title: "Crosses Win!")
+            WinX.text = "Win 0 : \(crossesWin)"
         }
 
         if cheakWins(NOUGHT)
         {
             noughtsWin += 1
             winAlertMsg(title: "Noughts Win!")
+            WinO.text = "Win 0 : \(noughtsWin)"
         }
 
         if(boardWhole())
