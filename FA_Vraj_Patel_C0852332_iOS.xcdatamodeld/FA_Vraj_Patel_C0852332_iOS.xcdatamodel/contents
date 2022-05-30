@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21D49" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Entity" representedClassName="Entity" syncable="YES" codeGenerationType="class">
-        <attribute name="id" optional="YES" attributeType="String"/>
-        <attribute name="movesArr" optional="YES" attributeType="Transformable"/>
+        <attribute name="array" optional="YES" attributeType="Transformable"/>
         <attribute name="turnOff" optional="YES" attributeType="String"/>
         <attribute name="turnOn" optional="YES" attributeType="String"/>
-        <attribute name="wino" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="winx" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String"/>
+        <attribute name="winO" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="winX" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="Entity" positionX="-54" positionY="-9" width="128" height="119"/>
+        <element name="Entity" positionX="-45" positionY="0" width="128" height="119"/>
     </elements>
 </model>

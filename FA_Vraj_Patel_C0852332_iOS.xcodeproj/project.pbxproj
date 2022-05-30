@@ -10,11 +10,11 @@
 		ACE6D61C284533000074F5B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE6D61B284533000074F5B7 /* AppDelegate.swift */; };
 		ACE6D61E284533000074F5B7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE6D61D284533000074F5B7 /* SceneDelegate.swift */; };
 		ACE6D623284533000074F5B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE6D621284533000074F5B7 /* Main.storyboard */; };
-		ACE6D626284533000074F5B7 /* FA_Vraj_Patel_C0852332_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ACE6D624284533000074F5B7 /* FA_Vraj_Patel_C0852332_iOS.xcdatamodeld */; };
 		ACE6D628284533000074F5B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACE6D627284533000074F5B7 /* Assets.xcassets */; };
 		ACE6D62B284533000074F5B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE6D629284533000074F5B7 /* LaunchScreen.storyboard */; };
 		ACE6D633284535330074F5B7 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE6D632284535330074F5B7 /* MainController.swift */; };
 		ACE6D63528453CDE0074F5B7 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE6D63428453CDE0074F5B7 /* CoreData.swift */; };
+		ACE6D63828455CEF0074F5B7 /* FA_Vraj_Patel_C0852332_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ACE6D63628455CEF0074F5B7 /* FA_Vraj_Patel_C0852332_iOS.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,12 +22,12 @@
 		ACE6D61B284533000074F5B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACE6D61D284533000074F5B7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		ACE6D622284533000074F5B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		ACE6D625284533000074F5B7 /* FA_Vraj_Patel_C0852332_iOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FA_Vraj_Patel_C0852332_iOS.xcdatamodel; sourceTree = "<group>"; };
 		ACE6D627284533000074F5B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACE6D62A284533000074F5B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACE6D62C284533000074F5B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ACE6D632284535330074F5B7 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		ACE6D63428453CDE0074F5B7 /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
+		ACE6D63728455CEF0074F5B7 /* FA_Vraj_Patel_C0852332_iOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FA_Vraj_Patel_C0852332_iOS.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,9 +66,9 @@
 				ACE6D627284533000074F5B7 /* Assets.xcassets */,
 				ACE6D629284533000074F5B7 /* LaunchScreen.storyboard */,
 				ACE6D62C284533000074F5B7 /* Info.plist */,
-				ACE6D624284533000074F5B7 /* FA_Vraj_Patel_C0852332_iOS.xcdatamodeld */,
 				ACE6D632284535330074F5B7 /* MainController.swift */,
 				ACE6D63428453CDE0074F5B7 /* CoreData.swift */,
+				ACE6D63628455CEF0074F5B7 /* FA_Vraj_Patel_C0852332_iOS.xcdatamodeld */,
 			);
 			path = FA_Vraj_Patel_C0852332_iOS;
 			sourceTree = "<group>";
@@ -145,7 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACE6D633284535330074F5B7 /* MainController.swift in Sources */,
-				ACE6D626284533000074F5B7 /* FA_Vraj_Patel_C0852332_iOS.xcdatamodeld in Sources */,
+				ACE6D63828455CEF0074F5B7 /* FA_Vraj_Patel_C0852332_iOS.xcdatamodeld in Sources */,
 				ACE6D61C284533000074F5B7 /* AppDelegate.swift in Sources */,
 				ACE6D61E284533000074F5B7 /* SceneDelegate.swift in Sources */,
 				ACE6D63528453CDE0074F5B7 /* CoreData.swift in Sources */,
@@ -366,14 +366,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		ACE6D624284533000074F5B7 /* FA_Vraj_Patel_C0852332_iOS.xcdatamodeld */ = {
+		ACE6D63628455CEF0074F5B7 /* FA_Vraj_Patel_C0852332_iOS.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				ACE6D625284533000074F5B7 /* FA_Vraj_Patel_C0852332_iOS.xcdatamodel */,
+				ACE6D63728455CEF0074F5B7 /* FA_Vraj_Patel_C0852332_iOS.xcdatamodel */,
 			);
-			currentVersion = ACE6D625284533000074F5B7 /* FA_Vraj_Patel_C0852332_iOS.xcdatamodel */;
+			currentVersion = ACE6D63728455CEF0074F5B7 /* FA_Vraj_Patel_C0852332_iOS.xcdatamodel */;
 			path = FA_Vraj_Patel_C0852332_iOS.xcdatamodeld;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
