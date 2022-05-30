@@ -55,6 +55,51 @@ class MainController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if CoreDataHelp.instance.dataCount() == 0
+               {
+                   CoreDataHelp.instance.save(turn: "X")
+               } else {
+                   CoreDataHelp.instance.getGameData()
+                   if appDelegate.arrGameData.count != 0  {
+                       let objGame = appDelegate.arrGameData[0] as! Entity
+                       turnLabel.text = objGame.turnOn ?? ""
+                       if let arrMoves = objGame.array as? [String] {
+
+                           crossesWin = Int(objGame.winX)
+                           noughtsWin = Int(objGame.winO)
+                           var currentMove = objGame.turnOn ?? "X"
+                           for i in 0..<arrMoves.count {
+                               let btnName = arrMoves[i]
+                               if btnName == "a1" {
+                                   a1.setTitle(currentMove, for: .normal)
+                               } else if btnName == "a2" {
+                                   a2.setTitle(currentMove, for: .normal)
+                               } else if btnName == "a3" {
+                                   a3.setTitle(currentMove, for: .normal)
+                               } else if btnName == "b1" {
+                                   b1.setTitle(currentMove, for: .normal)
+                               } else if btnName == "b2" {
+                                   b2.setTitle(currentMove, for: .normal)
+                               } else if btnName == "b3" {
+                                   b3.setTitle(currentMove, for: .normal)
+                               } else if btnName == "c1" {
+                                   c1.setTitle(currentMove, for: .normal)
+                               } else if btnName == "c2" {
+                                   c2.setTitle(currentMove, for: .normal)
+                               } else if btnName == "c3" {
+                                   c3.setTitle(currentMove, for: .normal)
+                               }
+                               currentTurn = getNextMoveEnum(move: currentMove)
+                               currentMove = getNextMove(move: currentMove)
+                               turnLabel.text = currentMove
+                           }
+                       }
+                       WinO.text = "Win O : " + String(Int(objGame.winO))
+                       WinX.text = "Win X : " + String(Int(objGame.winX))
+                   }
+
+               }
+
         boardInitialize()
 }
     
@@ -86,6 +131,29 @@ class MainController: UIViewController {
 
     
     
+    
+    func thisSymbol(_ button: UIButton, _ symbol: String) -> Bool
+    {
+        return button.title(for: .normal) == symbol
+    }
+    
+    func thatSymbol(_ button: UIButton) -> Bool
+      {
+          return (button.title(for: .normal) != nil)
+      }
+    func winAlertMsg(title: String)
+    {
+        CoreDataHelp.instance.updateCross(count: crossesWin)
+        CoreDataHelp.instance.updateNought(count: noughtsWin)
+        
+        let message = "\nNoughts " + String(noughtsWin) + "\n\nCrosses " + String(crossesWin)
+        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Reset", style: .default, handler: { (_) in
+            self.boardRes()
+        }))
+        self.present(ac, animated: true)
+    }
+
     func cheakWins(_ s :String) -> Bool
     {
         // Horizontal win
@@ -129,25 +197,6 @@ class MainController: UIViewController {
         return false
     }
 
-    func thisSymbol(_ button: UIButton, _ symbol: String) -> Bool
-    {
-        return button.title(for: .normal) == symbol
-    }
-    
-    func thatSymbol(_ button: UIButton) -> Bool
-      {
-          return (button.title(for: .normal) != nil)
-      }
-    func winAlertMsg(title: String)
-    {
-        let message = "\nNoughts " + String(noughtsWin) + "\n\nCrosses " + String(crossesWin)
-        let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-        ac.addAction(UIAlertAction(title: "Reset", style: .default, handler: { (_) in
-            self.boardRes()
-        }))
-        self.present(ac, animated: true)
-    }
-
     func boardRes()
     {
         for button in board
@@ -166,6 +215,11 @@ class MainController: UIViewController {
             turnLabel.text = NOUGHT
         }
         currentTurn = firstTurn
+        if currentTurn == .Cross {
+        CoreDataHelp.instance.changeTurn(move: "X")
+        } else {
+        CoreDataHelp.instance.changeTurn(move: "O")
+        }
     }
 
     func boardWhole() -> Bool
@@ -184,94 +238,122 @@ class MainController: UIViewController {
     {
         if(sender.title(for: .normal) == nil)
         {
+            var turn = ""
             if(currentTurn == Turn.Nought)
             {
                 sender.setTitle(NOUGHT, for: .normal)
                 currentTurn = Turn.Cross
                 turnLabel.text = CROSS
+                turn = "X"
             }
             else if(currentTurn == Turn.Cross)
             {
                 sender.setTitle(CROSS, for: .normal)
                 currentTurn = Turn.Nought
                 turnLabel.text = NOUGHT
+                turn = "O"
             }
             sender.isEnabled = false
+            arrayBtnTag.append(sender.tag)
+            var startTurn = ""
+            if firstTurn == .Cross {
+                startTurn = "X"
+            } else {
+                startTurn = "O"
+            }
+            
+            CoreDataHelp.instance.addGame(move: toMove(index: sender.tag), turn: turn,start: startTurn)
         }
     }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?)
         {
-            if motion == .motionShake {
-               undoCheaking()
+            if let _ = arrayBtnTag.last {
+                        if motion == .motionShake{
+                            undoCheaking()
+                            var turn = ""
+                            if(currentTurn == Turn.Nought)
+                            {
+                               currentTurn = Turn.Cross
+                               turnLabel.text = CROSS
+                               turn = "X"
+                            }
+                            else if(currentTurn == Turn.Cross)
+                            {
 
-                if(currentTurn == Turn.Nought)
-                {
-                    currentTurn = Turn.Cross
-                    turnLabel.text = CROSS
-                }
-                else if(currentTurn == Turn.Cross)
-                {
-
-                    currentTurn = Turn.Nought
-                    turnLabel.text = NOUGHT
-                }
-                
-            }
+                               currentTurn = Turn.Nought
+                               turnLabel.text = NOUGHT
+                                turn = "O"
+                            }
+                            CoreDataHelp.instance.removeLastMove(turn: turn)
+                            }
+        }
+        }
+    
+    @IBAction func swipeLeftOrRight(_ sender: UISwipeGestureRecognizer) {
+        switch sender.direction
+        {
+        case .right:
+            let message = "RESET GAME?"
+            let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+            ac.addAction(UIAlertAction(title: "Reset", style: .default, handler: { (_) in
+                self.boardRes()
+                self.WinX.text = "Win X :"
+                self.WinO.text = "Win O :"
+                CoreDataHelp.instance.resetCoreData()
+            }))
+            self.present(ac, animated: true)
+            
+        case .left:
+            let message = "RESET GAME?"
+            let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+            ac.addAction(UIAlertAction(title: "Reset", style: .default, handler: { (_) in
+                self.boardRes()
+                self.WinX.text = "Win X :"
+                self.WinO.text = "Win O :"
+                CoreDataHelp.instance.resetCoreData()
+            }))
+            self.present(ac, animated: true)
+            
+        default:
+            break
             
         }
+    }
     
     func undoCheaking()
         {
 
-            for button in board
-            {
-                if button == a1
-                {
-                    button.setTitle(nil, for: .normal)
-                    button.isEnabled = true
+            if let lastTag = arrayBtnTag.last {
+                if lastTag == 1 {
+                    a1.setTitle(nil, for: .normal)
+                    a1.isEnabled = true
+                } else if lastTag == 2 {
+                    a2.setTitle(nil, for: .normal)
+                    a2.isEnabled = true
+                } else if lastTag == 3 {
+                    a3.setTitle(nil, for: .normal)
+                    a3.isEnabled = true
+                } else if lastTag == 4 {
+                    b1.setTitle(nil, for: .normal)
+                    b1.isEnabled = true
+                } else if lastTag == 5 {
+                    b2.setTitle(nil, for: .normal)
+                    b2.isEnabled = true
+                } else if lastTag == 6 {
+                    b3.setTitle(nil, for: .normal)
+                    b3.isEnabled = true
+                } else if lastTag == 7 {
+                    c1.setTitle(nil, for: .normal)
+                    c1.isEnabled = true
+                } else if lastTag == 8 {
+                    c2.setTitle(nil, for: .normal)
+                    c2.isEnabled = true
+                } else if lastTag == 9 {
+                    c3.setTitle(nil, for: .normal)
+                    c3.isEnabled = true
                 }
-                if button == a2
-                {
-                    button.setTitle(nil, for: .normal)
-                    button.isEnabled = true
-                }
-                if button == a3
-                {
-                    button.setTitle(nil, for: .normal)
-                    button.isEnabled = true
-                }
-                if button == b1
-                {
-                    button.setTitle(nil, for: .normal)
-                    button.isEnabled = true
-                }
-                if button == b2
-                {
-                    button.setTitle(nil, for: .normal)
-                    button.isEnabled = true
-                }
-                if button == b3
-                {
-                    button.setTitle(nil, for: .normal)
-                    button.isEnabled = true
-                }
-                if button == c1
-                {
-                    button.setTitle(nil, for: .normal)
-                    button.isEnabled = true
-                }
-                if button == c2
-                {
-                    button.setTitle(nil, for: .normal)
-                    button.isEnabled = true
-                }
-                if button == c3
-                {
-                    button.setTitle(nil, for: .normal)
-                    button.isEnabled = true
-                }
-
+                arrayBtnTag.removeLast()
             }
         }
     
@@ -298,6 +380,22 @@ class MainController: UIViewController {
             board.append(c2)
             board.append(c3)
         }
+    func getNextMoveEnum(move : String) ->  Turn {
+        if move == "X" {
+            return Turn.Nought
+        } else {
+            return Turn.Cross
+        }
+        
+    }
+    
+    func getNextMove(move : String) -> String {
+        if move == "X" {
+            return "O"
+        } else {
+            return "X"
+        }
+    }
     
     func toMove(index : Int) -> MoveName {
         var move = MoveName.a1

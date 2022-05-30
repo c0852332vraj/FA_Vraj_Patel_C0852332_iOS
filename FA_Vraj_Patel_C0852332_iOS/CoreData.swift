@@ -15,7 +15,7 @@ class CoreDataHelp {
     
     func dataCount() -> Int {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Entity")
-        fetchRequest.predicate = NSPredicate(format: "id = %@", "MyGame")
+        fetchRequest.predicate = NSPredicate(format: "userId = %@", "MyGame")
         
         let managedContext =
         appDelegate.persistentContainer.viewContext
@@ -53,7 +53,7 @@ class CoreDataHelp {
     
     func addGame(move : MoveName, turn : String, start : String) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Entity")
-        fetchRequest.predicate = NSPredicate(format: "id = %@", "MyGame")
+        fetchRequest.predicate = NSPredicate(format: "userId = %@", "MyGame")
         
         let managedContext =
         appDelegate.persistentContainer.viewContext
@@ -84,7 +84,7 @@ class CoreDataHelp {
     
     func changeTurn(move : String) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Entity")
-        fetchRequest.predicate = NSPredicate(format: "id = %@", "MyGame")
+        fetchRequest.predicate = NSPredicate(format: "userId = %@", "MyGame")
         
         let managedContext =
         appDelegate.persistentContainer.viewContext
@@ -105,7 +105,7 @@ class CoreDataHelp {
     
     func removeLastMove(turn : String) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Entity")
-        fetchRequest.predicate = NSPredicate(format: "id = %@", "MyGame")
+        fetchRequest.predicate = NSPredicate(format: "userId = %@", "MyGame")
         
         let managedContext =
         appDelegate.persistentContainer.viewContext
@@ -131,7 +131,7 @@ class CoreDataHelp {
     
     func updateNought(count : Int) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Entity")
-        fetchRequest.predicate = NSPredicate(format: "id = %@", "MyGame")
+        fetchRequest.predicate = NSPredicate(format: "userId = %@", "MyGame")
         
         let managedContext =
         appDelegate.persistentContainer.viewContext
@@ -152,7 +152,7 @@ class CoreDataHelp {
     
     func updateCross(count : Int) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Entity")
-        fetchRequest.predicate = NSPredicate(format: "id = %@", "MyGame")
+        fetchRequest.predicate = NSPredicate(format: "userId = %@", "MyGame")
         
         let managedContext =
         appDelegate.persistentContainer.viewContext
@@ -192,7 +192,7 @@ class CoreDataHelp {
     
     func resetCoreData() {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Entity")
-        fetchRequest.predicate = NSPredicate(format: "id = %@", "MyGame")
+        fetchRequest.predicate = NSPredicate(format: "userId = %@", "MyGame")
         
         let managedContext =
         appDelegate.persistentContainer.viewContext
